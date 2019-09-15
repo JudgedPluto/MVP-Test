@@ -6,8 +6,9 @@ public class UserModel extends Model {
     public UserModel() {
         tableName = "User";
         tableColumns = new String[] {
-                "username",
-                "password"
+                "user_uid",
+                "user_phone",
+                "user_type"
         };
     }
 }

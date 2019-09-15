@@ -3,15 +3,13 @@ package org.firengine.mvp.contract.user;
 import org.firengine.mvp.presenter.BasePresenter;
 import org.firengine.mvp.view.BaseView;
 
-public interface UserDeleteActivityContract {
+public interface SplashActivityContract {
     interface Presenter extends BasePresenter {
-        void onActivityStarted(String id);
-        void onConfirmDeleteButtonClicked();
+        void onActivityCreated();
     }
 
     interface View extends BaseView {
-        void showLoadingBar();
-        void hideLoadingBar();
-        void finishActivity();
+        void startDashboardActivity(String userId);
+        void startLoginActivity();
     }
 }
