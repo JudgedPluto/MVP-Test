@@ -20,7 +20,7 @@ public class LoginActivityPresenter implements LoginActivityContract.Presenter {
 
         @Override
         public void onFailure() {
-            view.get().hideLoadingBar();
+
         }
     };
 
@@ -28,12 +28,11 @@ public class LoginActivityPresenter implements LoginActivityContract.Presenter {
         @Override
         public void onSuccess(String data) {
             view.get().startDashboardActivity();
-            view.get().hideLoadingBar();
         }
 
         @Override
         public void onFailure() {
-            view.get().hideLoadingBar();
+
         }
     };
 
@@ -50,6 +49,10 @@ public class LoginActivityPresenter implements LoginActivityContract.Presenter {
     @Override
     public void onLoginButtonClicked(String email, String password) {
         authenticator.login(email, password, loginCallback);
-        view.get().showLoadingBar();
+    }
+
+    @Override
+    public void onRegisterNavigateButtonClicked() {
+        view.get().startRegisterActivity();
     }
 }

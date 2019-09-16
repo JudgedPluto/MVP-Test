@@ -6,12 +6,14 @@ import org.firengine.mvp.view.BaseView;
 public interface DashboardActivityContract {
     interface Presenter extends BasePresenter {
         void onActivityCreated();
+        void onActivityUpdated();
         void onLogoutButtonClicked();
     }
 
     interface View extends BaseView {
         void updateTextView(String userId);
         void startLoginActivity();
+        void startAddInfoActivity(String userId);
         void finishActivity();
     }
 }

@@ -7,7 +7,8 @@ public class UserModel extends Model {
         tableName = "User";
         tableColumns = new String[] {
                 "user_uid",
-                "user_phone",
+                "user_first_name",
+                "user_last_name",
                 "user_type"
         };
     }

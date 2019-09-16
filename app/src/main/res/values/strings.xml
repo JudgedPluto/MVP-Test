@@ -17,4 +17,16 @@
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="register">Register</string>
+    <string name="confirm_password_placeholder">Confirm Password</string>
+    <string name="first_name">First Name:</string>
+    <string name="first_name_placeholder">First Name</string>
+    <string name="create">Create</string>
+    <string name="type">Type</string>
+    <string name="last_name_placeholder">Last Name</string>
+    <string name="last_name">Last Name:</string>
+    <string-array name="type_choices">
+        <item>Student</item>
+        <item>Landlord</item>
+    </string-array>
+    <string name="add_info">Add Info</string>
 </resources>

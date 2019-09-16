@@ -3,12 +3,13 @@ package org.firengine.mvp.contract.user;
 import org.firengine.mvp.presenter.BasePresenter;
 import org.firengine.mvp.view.BaseView;
 
-public interface RegisterActivityContract {
+public interface AddInfoActivityContract {
     interface Presenter extends BasePresenter {
-        void onRegisterCreateButton(String email, String password, String confirmPassword);
+        void onActivityCreated(String userId);
+        void onAddInfoButtonClicked(String type, String firstName, String lastName);
     }
 
     interface View extends BaseView {
-        void startDashboardActivity();
+        void finishActivity();
     }
 }

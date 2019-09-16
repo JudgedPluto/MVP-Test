@@ -1,4 +1,4 @@
-package org.firengine.mvp.view.constants;
+package org.firengine.mvp.view.constant;
 
 public class ViewCodes {
     public static final int ADD_CODE = 1000;
@@ -12,4 +12,9 @@ public class ViewCodes {
 
     public static final int MODIFIED_CODE = 1030;
     public static final int MODIFIED_OK = 1031;
+
+    // DO NOT MODIFY THESE...
+
+    public static final int DASHBOARD_CODE = 1040;
+    public static final int DASHBOARD_OK = 1041;
 }

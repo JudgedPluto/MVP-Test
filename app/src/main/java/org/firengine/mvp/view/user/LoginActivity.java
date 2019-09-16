@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,7 +15,6 @@ import org.firengine.mvp.presenter.user.LoginActivityPresenter;
 public class LoginActivity extends AppCompatActivity implements LoginActivityContract.View {
     private LoginActivityContract.Presenter presenter;
 
-    private FrameLayout loadingLogin;
     private EditText inputEmail;
     private EditText inputPassword;
 
@@ -27,21 +25,10 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityCon
 
         presenter = new LoginActivityPresenter(this, new Injector());
 
-        loadingLogin = findViewById(R.id.loading_login);
-        inputEmail = findViewById(R.id.input_email);
-        inputPassword = findViewById(R.id.input_password);
+        inputEmail = findViewById(R.id.input_email_login);
+        inputPassword = findViewById(R.id.input_password_login);
 
         presenter.onActivityCreated();
-    }
-
-    @Override
-    public void showLoadingBar() {
-        loadingLogin.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideLoadingBar() {
-        loadingLogin.setVisibility(View.GONE);
     }
 
     @Override
@@ -50,11 +37,20 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityCon
         startActivity(intent);
     }
 
-    public void onLogin(View view) {
-        presenter.onLoginButtonClicked(inputEmail.getText().toString(), inputPassword.getText().toString());
+    @Override
+    public void startRegisterActivity() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 
-    public void onNavigateRegister(View view) {
+    public void onLogin(View view) {
+        presenter.onLoginButtonClicked(
+                inputEmail.getText().toString(),
+                inputPassword.getText().toString()
+        );
+    }
 
+    public void onRegisterNavigate(View view) {
+        presenter.onRegisterNavigateButtonClicked();
     }
 }

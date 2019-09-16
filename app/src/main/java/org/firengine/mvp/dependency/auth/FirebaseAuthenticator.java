@@ -18,6 +18,22 @@ public class FirebaseAuthenticator implements Authenticator {
     }
 
     @Override
+    public void register(String email, String password, @NonNull final Callback<Void> callback) {
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    FirebaseUser user = task.getResult().getUser();
+                    if (user != null) {
+                        callback.onSuccess(null);
+                    }
+                }
+                callback.onFailure();
+            }
+        });
+    }
+
+    @Override
     public void login(String email, String password, @NonNull final Callback<Void> callback) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
