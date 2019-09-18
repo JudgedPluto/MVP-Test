@@ -17,4 +17,5 @@ public class ViewCodes {
 
     public static final int DASHBOARD_CODE = 1040;
     public static final int DASHBOARD_OK = 1041;
+    public static final int DASHBOARD_CANCEL = 1042;
 }

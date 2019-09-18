@@ -6,7 +6,8 @@ import org.firengine.mvp.view.BaseView;
 public interface DashboardActivityContract {
     interface Presenter extends BasePresenter {
         void onActivityCreated();
-        void onActivityUpdated();
+        void onAddInfoActivitySuccess();
+        void onAddInfoActivityFailure();
         void onLogoutButtonClicked();
     }
 

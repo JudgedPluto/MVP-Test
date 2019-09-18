@@ -20,6 +20,7 @@ public class AddInfoActivityPresenter implements AddInfoActivityContract.Present
     private Callback<Void> createCallback = new Callback<Void>() {
         @Override
         public void onSuccess(Void data) {
+            view.get().notifySuccess();
             view.get().finishActivity();
         }
 
@@ -45,5 +46,11 @@ public class AddInfoActivityPresenter implements AddInfoActivityContract.Present
         data.put("user_first_name", firstName);
         data.put("user_last_name", lastName);
         database.create(data, createCallback);
+    }
+
+    @Override
+    public void onBackButtonClicked() {
+        view.get().notifyCancel();
+        view.get().finishActivity();
     }
 }

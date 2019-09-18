@@ -2,32 +2,34 @@ package org.firengine.mvp.dependency.auth;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.firengine.mvp.dependency.Callback;
 
-public class FirebaseAuthenticator implements Authenticator {
+public class AuthenticatorFirebase implements Authenticator {
     private FirebaseAuth auth;
 
-    public FirebaseAuthenticator(FirebaseAuth auth) {
+    public AuthenticatorFirebase(FirebaseAuth auth) {
         this.auth = auth;
     }
 
     @Override
     public void register(String email, String password, @NonNull final Callback<Void> callback) {
-        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful() && task.getResult() != null) {
-                    FirebaseUser user = task.getResult().getUser();
-                    if (user != null) {
-                        callback.onSuccess(null);
-                    }
+            public void onSuccess(AuthResult authResult) {
+                FirebaseUser user = authResult.getUser();
+                if (user != null) {
+                    callback.onSuccess(null);
                 }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
                 callback.onFailure();
             }
         });
@@ -35,13 +37,14 @@ public class FirebaseAuthenticator implements Authenticator {
 
     @Override
     public void login(String email, String password, @NonNull final Callback<Void> callback) {
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        auth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    callback.onSuccess(null);
-                    return;
-                }
+            public void onSuccess(AuthResult authResult) {
+                callback.onSuccess(null);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
                 callback.onFailure();
             }
         });

@@ -12,7 +12,7 @@ public interface Database {
 
     void find(String id, @NonNull Callback<Map<String, Object>> callback);
 
-    void findWhere(String column, String value, @NonNull Callback<List<Map<String, Object>>> callback);
+    void where(String column, String value, @NonNull Callback<List<Map<String, Object>>> callback);
 
     void create(Map<String, Object> data, @NonNull Callback<Void> callback);
 

@@ -51,7 +51,7 @@ public class DashboardActivityPresenter implements DashboardActivityContract.Pre
         @Override
         public void onSuccess(String data) {
             currentUserId = data;
-            database.findWhere("user_uid", currentUserId, findWhereCallback);
+            database.where("user_uid", currentUserId, findWhereCallback);
         }
 
         @Override
@@ -73,8 +73,13 @@ public class DashboardActivityPresenter implements DashboardActivityContract.Pre
     }
 
     @Override
-    public void onActivityUpdated() {
-        database.findWhere("user_uid", currentUserId, findWhereCallback);
+    public void onAddInfoActivitySuccess() {
+        database.where("user_uid", currentUserId, findWhereCallback);
+    }
+
+    @Override
+    public void onAddInfoActivityFailure() {
+        view.get().finishActivity();
     }
 
     @Override

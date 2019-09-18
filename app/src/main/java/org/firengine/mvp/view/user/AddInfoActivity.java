@@ -39,9 +39,24 @@ public class AddInfoActivity extends AppCompatActivity implements AddInfoActivit
     }
 
     @Override
+    public void onBackPressed() {
+        presenter.onBackButtonClicked();
+        super.onBackPressed();
+    }
+
+    @Override
     public void finishActivity() {
-        setResult(ViewCodes.DASHBOARD_OK);
         finish();
+    }
+
+    @Override
+    public void notifySuccess() {
+        setResult(ViewCodes.DASHBOARD_OK);
+    }
+
+    @Override
+    public void notifyCancel() {
+        setResult(ViewCodes.DASHBOARD_CANCEL);
     }
 
     public void onAddInfo(View view) {

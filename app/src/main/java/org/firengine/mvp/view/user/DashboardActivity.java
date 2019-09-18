@@ -34,8 +34,15 @@ public class DashboardActivity extends AppCompatActivity implements DashboardAct
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ViewCodes.DASHBOARD_CODE && resultCode == ViewCodes.DASHBOARD_OK) {
-            presenter.onActivityUpdated();
+        if (requestCode == ViewCodes.DASHBOARD_CODE) {
+            switch (resultCode) {
+                case ViewCodes.DASHBOARD_OK:
+                    presenter.onAddInfoActivitySuccess();
+                    break;
+                case ViewCodes.DASHBOARD_CANCEL:
+                    presenter.onAddInfoActivityFailure();
+                    break;
+            }
         }
     }
 
