@@ -3,12 +3,15 @@ package org.firengine.mvp.contract.payment;
 import org.firengine.mvp.presenter.BasePresenter;
 import org.firengine.mvp.view.BaseView;
 
-public interface PaymentDeleteActivityContract {
+import java.util.List;
+import java.util.Map;
+
+public interface PaymentListFragmentContract {
     interface Presenter extends BasePresenter {
-        void checkValue();
+        void onActivityCreated();
     }
 
     interface View extends BaseView {
-        void updateView(String message);
+        void updateAdapter(List<Map<String, Object>> data);
     }
 }

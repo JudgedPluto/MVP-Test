@@ -17,4 +17,23 @@
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="register">Register</string>
+
+    <string name="make_your_payment">Make your payment</string>
+    <string name="payment_type">Select your payment type</string>
+    <string name="key_money">Key money</string>
+    <string name="month_payment">Month payment</string>
+    <string name="select_payment_method">Select your payment method</string>
+    <string name="payment_date">Payment date</string>
+    <string name="amount">Payment amount</string>
+    <string name="conform">CONFORM</string>
+    <string name="your_payment_details">Your Payment Details</string>
+    <string name="conform_delete">Press conform to delete your payment details</string>
+    <string-array name="type_payment">
+        <item>Select Your Payment Type</item>
+        <item>Key Money</item>
+        <item>Month Payment</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

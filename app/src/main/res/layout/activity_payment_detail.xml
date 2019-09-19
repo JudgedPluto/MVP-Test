@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".PaymentDetailActivity">
+
+        <TextView
+            android:id="@+id/payment_details"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/your_payment_details"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/d_student_id"
+            android:layout_width="284dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/payment_details" />
+
+        <TextView
+            android:id="@+id/d_landlord_id"
+            android:layout_width="287dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/d_student_id" />
+
+        <TextView
+            android:id="@+id/d_place_id"
+            android:layout_width="287dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/d_landlord_id" />
+
+        <TextView
+            android:id="@+id/d_payment_type"
+            android:layout_width="286dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/d_place_id" />
+
+        <TextView
+            android:id="@+id/d_payment_method"
+            android:layout_width="284dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/d_payment_type" />
+
+        <TextView
+            android:id="@+id/d_payment_amount"
+            android:layout_width="284dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/d_payment_method" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
