@@ -4,7 +4,7 @@ import org.firengine.mvp.model.Model;
 
 public class UserModel extends Model {
     public UserModel() {
-        tableName = "User_Info";
+        tableName = "User";
         tableColumns = new String[] {
                 "user_uid",
                 "user_first_name",
