@@ -2,9 +2,9 @@ package org.firengine.mvp.model.payment;
 
 import org.firengine.mvp.model.Model;
 
-public class PaymentInfoModel extends Model {
-    public PaymentInfoModel() {
-        tableName = "Payment_Info";
+public class PaymentModel extends Model {
+    public PaymentModel() {
+        tableName = "Payment";
         tableColumns = new String[] {
                 "student_id",
                 "landlord_id",

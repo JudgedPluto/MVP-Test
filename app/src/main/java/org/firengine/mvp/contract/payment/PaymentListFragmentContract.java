@@ -8,10 +8,12 @@ import java.util.Map;
 
 public interface PaymentListFragmentContract {
     interface Presenter extends BasePresenter {
-        void onActivityCreated();
+        void onActivityCreated(String column, String value);
+        void onListItemClicked(String id);
     }
 
     interface View extends BaseView {
         void updateAdapter(List<Map<String, Object>> data);
+        void startPaymentDetailActivity(String id);
     }
 }

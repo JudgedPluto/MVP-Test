@@ -9,7 +9,7 @@
     <string name="hint">Enter User ID</string>
     <string name="email_placeholder">E-mail</string>
     <string name="password_placeholder">Password</string>
-    <string name="edit">Edit</string>
+    <string name="edit">EDIT</string>
     <string name="delete">Delete</string>
     <string name="implementation_warning">Content not implemented yet!!!</string>
     <string name="confirm_message">Press Confirm to delete User.</string>
@@ -18,22 +18,37 @@
     <string name="logout">Logout</string>
     <string name="register">Register</string>
 
+    <!--Payment -->
+    <!--add edit-->
     <string name="make_your_payment">Make your payment</string>
-    <string name="payment_type">Select your payment type</string>
-    <string name="key_money">Key money</string>
-    <string name="month_payment">Month payment</string>
-    <string name="select_payment_method">Select your payment method</string>
-    <string name="payment_date">Payment date</string>
-    <string name="amount">Payment amount</string>
-    <string name="conform">CONFORM</string>
-    <string name="your_payment_details">Your Payment Details</string>
-    <string name="conform_delete">Press conform to delete your payment details</string>
+    <string name="a_student_id">Student Id</string>
+    <string name="a_landlord_id">Landlord Id</string>
+    <string name="a_place_id">Place Name</string>
     <string-array name="type_payment">
         <item>Select Your Payment Type</item>
         <item>Key Money</item>
         <item>Month Payment</item>
     </string-array>
+    <string name="select_payment_method">Select your payment method</string>
+    <string name="amount">Payment amount</string>
+    <string name="conform">CONFORM</string>
 
+    <!--detail-->
+    <string name="your_payment_details">Your Payment Details</string>
+    <string name="student_name">Student Name</string>
+    <string name="landlord_name">Landlord Name</string>
+    <string name="place_name">Place Name</string>
+    <string name="payment_type">Payment Type</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="payment_amount">Payment Amount</string>
+
+    <!--edit-->
+    <string name="edit_your_payment">Edit Your Payment</string>
+    <string name="save">SAVE</string>
+    
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
 </resources>

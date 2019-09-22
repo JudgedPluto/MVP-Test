@@ -1,21 +1,18 @@
 package org.firengine.mvp.presenter.payment;
 
-import android.util.Log;
-
-import org.firengine.mvp.contract.payment.PaymentAddEditActivityContract;
+import org.firengine.mvp.contract.payment.PaymentAddActivityContract;
 import org.firengine.mvp.dependency.Callback;
 import org.firengine.mvp.dependency.Injector;
 import org.firengine.mvp.dependency.database.Database;
-import org.firengine.mvp.model.payment.PaymentInfoModel;
-import org.firengine.mvp.model.payment.PaymentListModel;
+import org.firengine.mvp.model.payment.PaymentModel;
 
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PaymentAddEditActivityPresenter implements PaymentAddEditActivityContract.Presenter {
-//    private PaymentAddEditActivityContract.View view;
-    private WeakReference<PaymentAddEditActivityContract.View> view;
+public class PaymentAddActivityPresenter implements PaymentAddActivityContract.Presenter {
+//    private PaymentAddActivityContract.View view;
+    private WeakReference<PaymentAddActivityContract.View> view;
 
     private Database database;
 
@@ -31,9 +28,9 @@ public class PaymentAddEditActivityPresenter implements PaymentAddEditActivityCo
         }
     };
 
-    public PaymentAddEditActivityPresenter(PaymentAddEditActivityContract.View view, Injector injector) {
+    public PaymentAddActivityPresenter(PaymentAddActivityContract.View view, Injector injector) {
         this.view = new WeakReference<>(view);
-        this.database = injector.getDatabaseInstance(new PaymentInfoModel());
+        this.database = injector.getDatabaseInstance(new PaymentModel());
     }
 
     @Override

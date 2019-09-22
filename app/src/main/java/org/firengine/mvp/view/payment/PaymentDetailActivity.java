@@ -29,14 +29,17 @@ public class PaymentDetailActivity extends AppCompatActivity implements PaymentD
 
         presenter = new PaymentDetailActivityPresenter(this, new Injector());
 
-        studentId = findViewById(R.id.d_student_id);
-        landlordId = findViewById(R.id.d_landlord_id);
-        placeId = findViewById(R.id.d_place_id);
-        paymentType = findViewById(R.id.d_payment_type);
-        paymentMethod = findViewById(R.id.d_payment_method);
-        payemntAmount = findViewById(R.id.d_payment_amount);
+        studentId = findViewById(R.id.student_name_payment_detail);
+        landlordId = findViewById(R.id.landlord_name_payment_detail);
+        placeId = findViewById(R.id.place_name_payment_detail);
+        paymentType = findViewById(R.id.type_payment_detail);
+        paymentMethod = findViewById(R.id.method_payment_detail);
+        payemntAmount = findViewById(R.id.amount_payment_detail);
 
-        presenter.onActivityCreated("-Lp38NeFtDNmQcQg84Z8");
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("payment_id");
+
+        presenter.onActivityCreated(id);
     }
 
     @Override
@@ -49,13 +52,14 @@ public class PaymentDetailActivity extends AppCompatActivity implements PaymentD
         payemntAmount.setText(payment_amount.toString());
     }
 
-    public void editPayement(View view){
-        Intent intent_1 = new Intent(this, PaymentAddEditActivity.class);
-        startActivity(intent_1);
+    @Override
+    public void startPaymentEditActivity(String id) {
+        Intent intent = new Intent(this, PaymentEditActivity.class);
+        intent.putExtra("payment_id", id);
+        startActivity(intent);
     }
 
-    public void deletePayment(View view){
-        Intent intent_2 = new Intent(this, PaymentDeleteActivity.class);
-        startActivity(intent_2);
+    public void onEdit(View view) {
+        presenter.onEditButtonClicked();
     }
 }

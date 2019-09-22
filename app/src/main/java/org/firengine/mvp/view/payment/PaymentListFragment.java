@@ -1,5 +1,6 @@
 package org.firengine.mvp.view.payment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,10 +28,12 @@ public class PaymentListFragment extends Fragment implements PaymentListFragment
 
     private PaymentListAdapter adapter;
 
-    public PaymentListFragment() {}
+    private String filterColumn;
+    private String filterValue;
 
-    public static PaymentListFragment newInstance() {
-        return new PaymentListFragment();
+    public PaymentListFragment(String filterColumn, String filterValue) {
+        this.filterColumn = filterColumn;
+        this.filterValue = filterValue;
     }
 
     @Override
@@ -49,8 +52,14 @@ public class PaymentListFragment extends Fragment implements PaymentListFragment
         presenter = new PaymentListFragmentPresenter(this, new Injector());
 
         adapter = new PaymentListAdapter();
+        adapter.setListener(new PaymentItemClickListener() {
+            @Override
+            public void onItemClick(String id) {
+                presenter.onListItemClicked(id);
+            }
+        });
 
-        presenter.onActivityCreated();
+        presenter.onActivityCreated(filterColumn, filterValue);
     }
 
     @Override
@@ -58,9 +67,21 @@ public class PaymentListFragment extends Fragment implements PaymentListFragment
         adapter.updateList(data);
     }
 
-    private static class PaymentListAdapter extends RecyclerView.Adapter<PaymentListViewHolder> {
+    @Override
+    public void startPaymentDetailActivity(String id) {
+        Intent intent = new Intent(getContext(), PaymentDetailActivity.class);
+        intent.putExtra("payment_id", id);
+        startActivity(intent);
+    }
 
+    private static class PaymentListAdapter extends RecyclerView.Adapter<PaymentListViewHolder> {
         private List<Map<String, Object>> list = new ArrayList<>();
+
+        private PaymentItemClickListener listener;
+
+        void setListener(PaymentItemClickListener listener) {
+            this.listener = listener;
+        }
 
         void updateList(List<Map<String, Object>> list) {
             this.list = list;
@@ -75,8 +96,15 @@ public class PaymentListFragment extends Fragment implements PaymentListFragment
 
         @Override
         public void onBindViewHolder(@NonNull PaymentListViewHolder holder, int position) {
-            holder.placeField.setText(list.get(position).get("place_name").toString());
+            final String id = list.get(position).get("id").toString();
+            holder.placeField.setText(list.get(position).get("id").toString());
             holder.amountField.setText(list.get(position).get("payment_amount").toString());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(id);
+                }
+            });
         }
 
         @Override
@@ -93,7 +121,7 @@ public class PaymentListFragment extends Fragment implements PaymentListFragment
         PaymentListViewHolder(@NonNull View itemView) {
             super(itemView);
             this.itemView = itemView;
-            placeField = itemView.findViewById(R.id.payment_place_field);
+            placeField = itemView.findViewById(R.id.payment_id_field);
             amountField = itemView.findViewById(R.id.payment_amount_field);
         }
 
@@ -101,5 +129,9 @@ public class PaymentListFragment extends Fragment implements PaymentListFragment
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.holder_payment_item, parent, false);
             return new PaymentListViewHolder(itemView);
         }
+    }
+
+    private interface PaymentItemClickListener {
+        void onItemClick(String id);
     }
 }
