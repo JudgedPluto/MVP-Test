@@ -33,7 +33,7 @@ public class DatabaseFirebase implements Database {
     @Override
     public void all(@NonNull final Callback<List<Map<String, Object>>> callback) {
         database.child(model.getTableName())
-                .addValueEventListener(new ValueEventListener() {
+                .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         List<Map<String, Object>> list = new ArrayList<>();

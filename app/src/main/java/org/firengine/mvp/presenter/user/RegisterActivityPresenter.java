@@ -4,7 +4,6 @@ import org.firengine.mvp.contract.user.RegisterActivityContract;
 import org.firengine.mvp.dependency.Callback;
 import org.firengine.mvp.dependency.Injector;
 import org.firengine.mvp.dependency.auth.Authenticator;
-import org.firengine.mvp.model.user.UserModel;
 
 import java.lang.ref.WeakReference;
 

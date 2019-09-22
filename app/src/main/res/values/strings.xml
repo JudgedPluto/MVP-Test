@@ -24,7 +24,7 @@
     <string name="type">Type</string>
     <string name="last_name_placeholder">Last Name</string>
     <string name="last_name">Last Name:</string>
-    <string-array name="type_choices">
+    <string-array name="type_choices">[
         <item>Student</item>
         <item>Landlord</item>
     </string-array>
