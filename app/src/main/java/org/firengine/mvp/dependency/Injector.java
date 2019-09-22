@@ -8,6 +8,7 @@ import org.firengine.mvp.dependency.auth.AuthenticatorFirebase;
 import org.firengine.mvp.dependency.database.Database;
 import org.firengine.mvp.dependency.database.DatabaseFirebase;
 import org.firengine.mvp.model.Model;
+import org.firengine.mvp.model.user.UserModel;
 
 public class Injector {
     public Database getDatabaseInstance(Model model) {
@@ -17,4 +18,6 @@ public class Injector {
     public Authenticator getAuthenticationInstance() {
         return new AuthenticatorFirebase(FirebaseAuth.getInstance());
     }
+
+    
 }

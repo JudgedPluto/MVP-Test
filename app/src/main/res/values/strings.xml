@@ -29,4 +29,14 @@
         <item>Landlord</item>
     </string-array>
     <string name="add_info">Add Info</string>
+    <string name="phone_num">Phone num</string>
+    <string name="room_availibility">Room Availibility</string>
+    <string name="room_price">Room price</string>
+    <string name="room_types">Room types</string>
+    <string name="rules">Rules</string>
+    <string name="specialities">Specialities</string>
+    <string name="address">Address</string>
+    <string name="name_of_bordim">Name of Bordim</string>
+    <string name="reviews">Reviews</string>
+    <string name="book">Book</string>
 </resources>
