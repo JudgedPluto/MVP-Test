@@ -16,7 +16,7 @@ public interface Database {
 
     void create(Map<String, Object> data, @NonNull Callback<Void> callback);
 
-    void update(String id, Map<String, Object> data,@NonNull Callback<Void> callback);
+    void update(String id, Map<String, Object> data, @NonNull Callback<Void> callback);
 
     void delete(String id, @NonNull Callback<Void> callback);
 }
