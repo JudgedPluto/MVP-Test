@@ -6,9 +6,9 @@ import org.firengine.mvp.view.BaseView;
 import java.util.List;
 import java.util.Map;
 
-public interface PaymentListFragmentContract {
+public interface ListPaymentsFragmentContract {
     interface Presenter extends BasePresenter {
-        void onActivityCreated(String column, String value);
+        void onFragmentCreated(String column, String value);
         void onListItemClicked(String id);
     }
 

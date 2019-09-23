@@ -26,7 +26,7 @@ public class DashboardActivityPresenter implements DashboardActivityContract.Pre
                 view.get().startAddInfoActivity(currentUserId);
             } else {
                 Map<String, Object> user = data.get(0);
-                view.get().updateTextView(user.get("user_first_name") + " " + user.get("user_last_name"));
+                view.get().updateNavigationBar(user);
             }
         }
 

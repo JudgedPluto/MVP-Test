@@ -9,10 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.user.AddInfoActivity"></activity>
-        <activity
-            android:name=".view.user.RegisterActivity"
-            android:noHistory="true" />
         <activity
             android:name=".view.user.SplashActivity"
             android:noHistory="true">
@@ -25,7 +21,15 @@
         <activity
             android:name=".view.user.LoginActivity"
             android:noHistory="true" />
+        <activity
+            android:name=".view.user.RegisterActivity"
+            android:noHistory="true" />
         <activity android:name=".view.user.DashboardActivity" />
+        <activity android:name=".view.user.AddInfoActivity" />
+
+        <activity android:name=".view.payment.EditPaymentActivity" />
+        <activity android:name=".view.payment.AddPaymentActivity" />
+        <activity android:name=".view.payment.PaymentInfoActivity" />
     </application>
 
 </manifest>

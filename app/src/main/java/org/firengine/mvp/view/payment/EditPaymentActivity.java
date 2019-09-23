@@ -9,12 +9,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.firengine.mvp.R;
-import org.firengine.mvp.contract.payment.PaymentEditActivityContract;
+import org.firengine.mvp.contract.payment.EditPaymentActivityContract;
 import org.firengine.mvp.dependency.Injector;
-import org.firengine.mvp.presenter.payment.PaymentEditActivityPresenter;
+import org.firengine.mvp.presenter.payment.EditPaymentActivityPresenter;
 
-public class PaymentEditActivity extends AppCompatActivity implements PaymentEditActivityContract.View {
-    private PaymentEditActivityContract.Presenter presenter;
+public class EditPaymentActivity extends AppCompatActivity implements EditPaymentActivityContract.View {
+    private EditPaymentActivityContract.Presenter presenter;
 
     private TextView studentId;
     private TextView landlordId;
@@ -27,9 +27,9 @@ public class PaymentEditActivity extends AppCompatActivity implements PaymentEdi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment_edit);
+        setContentView(R.layout.activity_edit_payment);
 
-        presenter = new PaymentEditActivityPresenter(this, new Injector());
+        presenter = new EditPaymentActivityPresenter(this, new Injector());
 
         studentId = findViewById(R.id.a_s_id);
         landlordId = findViewById(R.id.a_i_id);
@@ -53,6 +53,11 @@ public class PaymentEditActivity extends AppCompatActivity implements PaymentEdi
         findIndex(paymentType, payment_type);
         paymentMethod.setText(payment_method.toString());
         payemntAmount.setText(payment_amount.toString());
+    }
+
+    @Override
+    public void finishActivity() {
+        finish();
     }
 
     public void onSave(View view) {

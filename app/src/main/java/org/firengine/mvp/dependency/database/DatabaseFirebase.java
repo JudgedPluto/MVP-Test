@@ -82,7 +82,6 @@ public class DatabaseFirebase implements Database {
                 .orderByChild(column).equalTo(value).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Log.d("onDataChange", "onDataChange");
                         List<Map<String, Object>> list = new ArrayList<>();
                         for (DataSnapshot data : dataSnapshot.getChildren()) {
                             Map<String, Object> columnData = new HashMap<>();

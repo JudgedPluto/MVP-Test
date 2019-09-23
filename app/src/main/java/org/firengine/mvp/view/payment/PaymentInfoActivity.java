@@ -8,12 +8,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.firengine.mvp.R;
-import org.firengine.mvp.contract.payment.PaymentDetailActivityContract;
+import org.firengine.mvp.contract.payment.PaymentInfoActivityContract;
 import org.firengine.mvp.dependency.Injector;
-import org.firengine.mvp.presenter.payment.PaymentDetailActivityPresenter;
+import org.firengine.mvp.presenter.payment.PaymentInfoActivityPresenter;
 
-public class PaymentDetailActivity extends AppCompatActivity implements PaymentDetailActivityContract.View {
-    private PaymentDetailActivityContract.Presenter presenter;
+public class PaymentInfoActivity extends AppCompatActivity implements PaymentInfoActivityContract.View {
+    private PaymentInfoActivityContract.Presenter presenter;
 
     private TextView studentId;
     private TextView landlordId;
@@ -25,9 +25,9 @@ public class PaymentDetailActivity extends AppCompatActivity implements PaymentD
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment_detail);
+        setContentView(R.layout.activity_payment_info);
 
-        presenter = new PaymentDetailActivityPresenter(this, new Injector());
+        presenter = new PaymentInfoActivityPresenter(this, new Injector());
 
         studentId = findViewById(R.id.student_name_payment_detail);
         landlordId = findViewById(R.id.landlord_name_payment_detail);
@@ -54,7 +54,7 @@ public class PaymentDetailActivity extends AppCompatActivity implements PaymentD
 
     @Override
     public void startPaymentEditActivity(String id) {
-        Intent intent = new Intent(this, PaymentEditActivity.class);
+        Intent intent = new Intent(this, EditPaymentActivity.class);
         intent.putExtra("payment_id", id);
         startActivity(intent);
     }

@@ -3,7 +3,7 @@ package org.firengine.mvp.contract.payment;
 import org.firengine.mvp.presenter.BasePresenter;
 import org.firengine.mvp.view.BaseView;
 
-public interface PaymentDetailActivityContract {
+public interface PaymentInfoActivityContract {
     interface Presenter extends BasePresenter {
         void onActivityCreated(String id);
         void onEditButtonClicked();

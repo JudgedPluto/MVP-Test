@@ -3,6 +3,8 @@ package org.firengine.mvp.contract.user;
 import org.firengine.mvp.presenter.BasePresenter;
 import org.firengine.mvp.view.BaseView;
 
+import java.util.Map;
+
 public interface DashboardActivityContract {
     interface Presenter extends BasePresenter {
         void onActivityCreated();
@@ -12,7 +14,7 @@ public interface DashboardActivityContract {
     }
 
     interface View extends BaseView {
-        void updateTextView(String userId);
+        void updateNavigationBar(Map<String, Object> user);
         void startLoginActivity();
         void startAddInfoActivity(String userId);
         void finishActivity();

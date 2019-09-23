@@ -1,6 +1,6 @@
 package org.firengine.mvp.presenter.payment;
 
-import org.firengine.mvp.contract.payment.PaymentAddActivityContract;
+import org.firengine.mvp.contract.payment.AddPaymentActivityContract;
 import org.firengine.mvp.dependency.Callback;
 import org.firengine.mvp.dependency.Injector;
 import org.firengine.mvp.dependency.database.Database;
@@ -10,9 +10,9 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PaymentAddActivityPresenter implements PaymentAddActivityContract.Presenter {
-//    private PaymentAddActivityContract.View view;
-    private WeakReference<PaymentAddActivityContract.View> view;
+public class AddPaymentActivityPresenter implements AddPaymentActivityContract.Presenter {
+//    private AddPaymentActivityContract.View view;
+    private WeakReference<AddPaymentActivityContract.View> view;
 
     private Database database;
 
@@ -28,7 +28,7 @@ public class PaymentAddActivityPresenter implements PaymentAddActivityContract.P
         }
     };
 
-    public PaymentAddActivityPresenter(PaymentAddActivityContract.View view, Injector injector) {
+    public AddPaymentActivityPresenter(AddPaymentActivityContract.View view, Injector injector) {
         this.view = new WeakReference<>(view);
         this.database = injector.getDatabaseInstance(new PaymentModel());
     }

@@ -14,31 +14,31 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.firengine.mvp.R;
-import org.firengine.mvp.contract.payment.PaymentListFragmentContract;
+import org.firengine.mvp.contract.payment.ListPaymentsFragmentContract;
 import org.firengine.mvp.dependency.Injector;
-import org.firengine.mvp.presenter.payment.PaymentListFragmentPresenter;
+import org.firengine.mvp.presenter.payment.ListPaymentsFragmentPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 
-public class PaymentListFragment extends Fragment implements PaymentListFragmentContract.View {
-    private PaymentListFragmentContract.Presenter presenter;
+public class ListPaymentsFragment extends Fragment implements ListPaymentsFragmentContract.View {
+    private ListPaymentsFragmentContract.Presenter presenter;
 
     private PaymentListAdapter adapter;
 
     private String filterColumn;
     private String filterValue;
 
-    public PaymentListFragment(String filterColumn, String filterValue) {
+    public ListPaymentsFragment(String filterColumn, String filterValue) {
         this.filterColumn = filterColumn;
         this.filterValue = filterValue;
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_payment_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_list_payments, container, false);
         RecyclerView paymentList = rootView.findViewById(R.id.payment_list);
         paymentList.setLayoutManager(new LinearLayoutManager(getContext()));
         paymentList.setAdapter(adapter);
@@ -48,8 +48,7 @@ public class PaymentListFragment extends Fragment implements PaymentListFragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        presenter = new PaymentListFragmentPresenter(this, new Injector());
+        presenter = new ListPaymentsFragmentPresenter(this, new Injector());
 
         adapter = new PaymentListAdapter();
         adapter.setListener(new PaymentItemClickListener() {
@@ -58,8 +57,12 @@ public class PaymentListFragment extends Fragment implements PaymentListFragment
                 presenter.onListItemClicked(id);
             }
         });
+    }
 
-        presenter.onActivityCreated(filterColumn, filterValue);
+    @Override
+    public void onStart() {
+        super.onStart();
+        presenter.onFragmentCreated(filterColumn, filterValue);
     }
 
     @Override
@@ -69,7 +72,7 @@ public class PaymentListFragment extends Fragment implements PaymentListFragment
 
     @Override
     public void startPaymentDetailActivity(String id) {
-        Intent intent = new Intent(getContext(), PaymentDetailActivity.class);
+        Intent intent = new Intent(getContext(), PaymentInfoActivity.class);
         intent.putExtra("payment_id", id);
         startActivity(intent);
     }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_places"
+        android:icon="@drawable/ic_places"
+        android:title="Places" />
+    <item
+        android:id="@+id/item_reviews"
+        android:icon="@drawable/ic_reviews"
+        android:title="Reviews" />
+    <item
+        android:id="@+id/item_payments"
+        android:icon="@drawable/ic_payments"
+        android:title="Payments" />
+    <item
+        android:id="@+id/item_user"
+        android:icon="@drawable/ic_user"
+        android:title="User" />
+</menu>

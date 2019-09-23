@@ -8,12 +8,12 @@ import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.firengine.mvp.R;
-import org.firengine.mvp.contract.payment.PaymentAddActivityContract;
+import org.firengine.mvp.contract.payment.AddPaymentActivityContract;
 import org.firengine.mvp.dependency.Injector;
-import org.firengine.mvp.presenter.payment.PaymentAddActivityPresenter;
+import org.firengine.mvp.presenter.payment.AddPaymentActivityPresenter;
 
-public class PaymentAddActivity extends AppCompatActivity implements PaymentAddActivityContract.View {
-    private PaymentAddActivityContract.Presenter presenter;
+public class AddPaymentActivity extends AppCompatActivity implements AddPaymentActivityContract.View {
+    private AddPaymentActivityContract.Presenter presenter;
 
     private Spinner inputType;
     private EditText inputMethod;
@@ -22,9 +22,9 @@ public class PaymentAddActivity extends AppCompatActivity implements PaymentAddA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment_add);
+        setContentView(R.layout.activity_add_payment);
 
-        presenter = new PaymentAddActivityPresenter(this, new Injector());
+        presenter = new AddPaymentActivityPresenter(this, new Injector());
 
         inputType = findViewById(R.id.payment_type);
         inputMethod = findViewById(R.id.method_payment);
