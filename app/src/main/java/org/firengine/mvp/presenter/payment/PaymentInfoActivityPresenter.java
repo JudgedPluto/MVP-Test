@@ -13,8 +13,6 @@ public class PaymentInfoActivityPresenter implements PaymentInfoActivityContract
     private WeakReference<PaymentInfoActivityContract.View> view;
 
     private Database paymentDatabase;
-//    private Database userDatabase;
-//    private Database placeDatabase;
 
     private String paymentId;
 
@@ -23,26 +21,24 @@ public class PaymentInfoActivityPresenter implements PaymentInfoActivityContract
         public void onSuccess(Map<String, Object> data) {
             paymentId = data.get("id").toString();
             view.get().updateTextViews(
-                    data.get("student_id"),
-                    data.get("landlord_id"),
-                    data.get("place_id"),
-                    data.get("payment_type"),
+                    data.get("place_name"),
+                    data.get("student_name"),
+                    data.get("landlord_name"),
+                    data.get("payment_amount"),
                     data.get("payment_method"),
-                    data.get("payment_amount")
+                    data.get("payment_description")
             );
         }
 
         @Override
         public void onFailure() {
-
+            view.get().finishActivity();
         }
     };
 
     public PaymentInfoActivityPresenter(PaymentInfoActivityContract.View view , Injector injector) {
         this.view = new WeakReference<>(view);
         this.paymentDatabase = injector.getDatabaseInstance(new PaymentModel());
-//        this.userDatabase = injector.getDatabaseInstance(new UserModel());
-//        this.placeDatabase = injector.getDatabaseInstance(new PlaceModel());
     }
 
     @Override
@@ -52,6 +48,6 @@ public class PaymentInfoActivityPresenter implements PaymentInfoActivityContract
 
     @Override
     public void onEditButtonClicked() {
-        view.get().startPaymentEditActivity(paymentId);
+        view.get().startEditPaymentActivity(paymentId);
     }
 }

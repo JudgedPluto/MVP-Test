@@ -5,7 +5,7 @@ import org.firengine.mvp.view.BaseView;
 
 public interface UserInfoFragmentContract {
     interface Presenter extends BasePresenter {
-        void onFragmentCreated(String name, String type);
+        void onFragmentCreated(String userId);
     }
 
     interface View extends BaseView {

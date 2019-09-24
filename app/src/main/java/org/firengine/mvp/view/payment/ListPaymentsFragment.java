@@ -26,22 +26,20 @@ import java.util.Map;
 public class ListPaymentsFragment extends Fragment implements ListPaymentsFragmentContract.View {
     private ListPaymentsFragmentContract.Presenter presenter;
 
+    private RecyclerView paymentList;
     private PaymentListAdapter adapter;
 
-    private String filterColumn;
-    private String filterValue;
+    private String userId;
 
-    public ListPaymentsFragment(String filterColumn, String filterValue) {
-        this.filterColumn = filterColumn;
-        this.filterValue = filterValue;
+    public ListPaymentsFragment(String userId) {
+        this.userId = userId;
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_list_payments, container, false);
-        RecyclerView paymentList = rootView.findViewById(R.id.payment_list);
+        paymentList = rootView.findViewById(R.id.payment_list);
         paymentList.setLayoutManager(new LinearLayoutManager(getContext()));
-        paymentList.setAdapter(adapter);
         return rootView;
     }
 
@@ -50,19 +48,19 @@ public class ListPaymentsFragment extends Fragment implements ListPaymentsFragme
         super.onCreate(savedInstanceState);
         presenter = new ListPaymentsFragmentPresenter(this, new Injector());
 
-        adapter = new PaymentListAdapter();
+        presenter.onFragmentCreated(userId);
+    }
+
+    @Override
+    public void setupAdapter(String userType) {
+        adapter = new PaymentListAdapter(userType);
         adapter.setListener(new PaymentItemClickListener() {
             @Override
             public void onItemClick(String id) {
                 presenter.onListItemClicked(id);
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        presenter.onFragmentCreated(filterColumn, filterValue);
+        paymentList.setAdapter(adapter);
     }
 
     @Override
@@ -71,7 +69,7 @@ public class ListPaymentsFragment extends Fragment implements ListPaymentsFragme
     }
 
     @Override
-    public void startPaymentDetailActivity(String id) {
+    public void startPaymentInfoActivity(String id) {
         Intent intent = new Intent(getContext(), PaymentInfoActivity.class);
         intent.putExtra("payment_id", id);
         startActivity(intent);
@@ -81,6 +79,12 @@ public class ListPaymentsFragment extends Fragment implements ListPaymentsFragme
         private List<Map<String, Object>> list = new ArrayList<>();
 
         private PaymentItemClickListener listener;
+
+        private String viewType;
+
+        PaymentListAdapter(String viewType) {
+            this.viewType = viewType;
+        }
 
         void setListener(PaymentItemClickListener listener) {
             this.listener = listener;
@@ -94,14 +98,15 @@ public class ListPaymentsFragment extends Fragment implements ListPaymentsFragme
         @NonNull
         @Override
         public PaymentListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return PaymentListViewHolder.createViewHolder(parent);
+
+            return PaymentListViewHolder.createViewHolder(parent, viewType);
         }
 
         @Override
         public void onBindViewHolder(@NonNull PaymentListViewHolder holder, int position) {
             final String id = list.get(position).get("id").toString();
-            holder.placeField.setText(list.get(position).get("id").toString());
-            holder.amountField.setText(list.get(position).get("payment_amount").toString());
+            holder.place.setText(list.get(position).get("place_name").toString());
+            holder.amount.setText(list.get(position).get("payment_amount").toString());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -114,23 +119,46 @@ public class ListPaymentsFragment extends Fragment implements ListPaymentsFragme
         public int getItemCount() {
             return list.size();
         }
+
+        @Override
+        public int getItemViewType(int position) {
+            switch (viewType) {
+                case "Landlord":
+                    return 0;
+                case "Student":
+                    return 1;
+            }
+            return super.getItemViewType(position);
+        }
     }
 
     private static class PaymentListViewHolder extends RecyclerView.ViewHolder {
         View itemView;
-        TextView placeField;
-        TextView amountField;
+        TextView place;
+        TextView amount;
 
-        PaymentListViewHolder(@NonNull View itemView) {
+        PaymentListViewHolder(@NonNull View itemView, int viewType) {
             super(itemView);
             this.itemView = itemView;
-            placeField = itemView.findViewById(R.id.payment_id_field);
-            amountField = itemView.findViewById(R.id.payment_amount_field);
+            place = itemView.findViewById(R.id.payment_place_name);
+            amount = itemView.findViewById(R.id.payment_amount);
+            TextView placeField = itemView.findViewById(R.id.payment_place_name_field);
+            TextView amountField = itemView.findViewById(R.id.payment_amount_field);
+            switch (viewType) {
+                case 0:
+                    placeField.setText(R.string.payment_receipt);
+                    amountField.setText(R.string.amount_received);
+                    break;
+                case 1:
+                    placeField.setText(R.string.payment_invoice);
+                    amountField.setText(R.string.amount_paid);
+                    break;
+            }
         }
 
-        static PaymentListViewHolder createViewHolder(@NonNull ViewGroup parent) {
+        static PaymentListViewHolder createViewHolder(@NonNull ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.holder_payment_item, parent, false);
-            return new PaymentListViewHolder(itemView);
+            return new PaymentListViewHolder(itemView, viewType);
         }
     }
 

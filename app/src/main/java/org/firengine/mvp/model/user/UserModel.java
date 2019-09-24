@@ -9,6 +9,7 @@ public class UserModel extends Model {
                 "user_uid",
                 "user_first_name",
                 "user_last_name",
+                "user_display_name",
                 "user_type"
         };
     }

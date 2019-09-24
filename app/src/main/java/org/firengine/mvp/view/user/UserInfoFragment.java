@@ -2,15 +2,14 @@ package org.firengine.mvp.view.user;
 
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import org.firengine.mvp.R;
 import org.firengine.mvp.contract.user.UserInfoFragmentContract;
@@ -23,12 +22,10 @@ public class UserInfoFragment extends Fragment implements UserInfoFragmentContra
     private TextView displayName;
     private TextView displayType;
 
-    private String userDisplayName;
-    private String userDisplayType;
+    private String userId;
 
-    public UserInfoFragment(String userDisplayName, String userDisplayType) {
-        this.userDisplayName = userDisplayName;
-        this.userDisplayType = userDisplayType;
+    public UserInfoFragment(String userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -43,12 +40,8 @@ public class UserInfoFragment extends Fragment implements UserInfoFragmentContra
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new UserInfoFragmentPresenter(this, new Injector());
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        presenter.onFragmentCreated(userDisplayName, userDisplayType);
+        presenter.onFragmentCreated(userId);
     }
 
     @Override

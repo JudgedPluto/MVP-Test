@@ -36,13 +36,16 @@
     <string name="a_student_id">Student Id</string>
     <string name="a_landlord_id">Landlord Id</string>
     <string name="a_place_id">Place Name</string>
-    <string-array name="type_payment">
-        <item>Select Your Payment Type</item>
-        <item>Key Money</item>
-        <item>Month Payment</item>
+    <string-array name="payment_description">
+        <item>Registration Fee</item>
+        <item>Monthly Renewal Fee</item>
+    </string-array>
+    <string-array name="payment_method">
+        <item>Credit/Debit Card</item>
+        <item>Online Payment</item>
     </string-array>
     <string name="select_payment_method">Select your payment method</string>
-    <string name="amount">Payment amount</string>
+    <string name="amount">Amount</string>
     <string name="conform">CONFORM</string>
 
     <!--detail-->
@@ -58,10 +61,6 @@
     <string name="edit_your_payment">Edit Your Payment</string>
     <string name="save">SAVE</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
     <string name="phone_num"> Phone num</string>
     <string name="room_availibility"> Room Availibility</string>
     <string name="room_price"> Room price</string>
@@ -72,4 +71,30 @@
     <string name="name_of_bordim"> Name of Bordim</string>
     <string name="reviews">Reviews</string>
     <string name="book">Book</string>
+    <string name="phone">Phone</string>
+    <string name="available">Available</string>
+    <string name="features">Features</string>
+    <string name="price">Price</string>
+    <string name="select_image">Select Image</string>
+    <string name="select_location">Select Location</string>
+    <string name="amount_received">Amount Received:</string>
+    <string name="payment_receipt">Payment Receipt</string>
+    <string name="payment_invoice">Payment Invoice</string>
+    <string name="amount_paid">Amount Paid:</string>
+    <string name="from">From:</string>
+    <string name="to">To:</string>
+    <string name="paid_with">Paid with</string>
+    <string name="paid_in">Paid in</string>
+    <string name="payment_description">Payment Description</string>
+    <string name="select_your_payment_description">Select your payment description</string>
+    <string name="select_your_payment_method">Select your payment method</string>
+    <string name="place_phone">Place Phone</string>
+    <string name="place_features">Place Features</string>
+    <string name="place_address">Place Address</string>
+    <string name="see_location">See Location</string>
+    <string name="owner">Owner:</string>
+    <string name="order">Order</string>
+    <string name="pick_location">Pick Location</string>
+    <string name="not_available">Not Available</string>
+    <string name="price_text">Price:</string>
 </resources>

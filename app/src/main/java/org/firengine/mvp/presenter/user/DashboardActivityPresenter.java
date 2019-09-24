@@ -83,7 +83,32 @@ public class DashboardActivityPresenter implements DashboardActivityContract.Pre
     }
 
     @Override
+    public void onItemPlacesClicked() {
+        view.get().startListPlacesFragment(currentUserId);
+    }
+
+    @Override
+    public void onItemReviewsClicked() {
+        view.get().startListReviewsFragment(currentUserId);
+    }
+
+    @Override
+    public void onItemPaymentsClicked() {
+        view.get().startListPaymentsFragment(currentUserId);
+    }
+
+    @Override
+    public void onItemUserClicked() {
+        view.get().startUserInfoFragment(currentUserId);
+    }
+
+    @Override
     public void onLogoutButtonClicked() {
         authenticator.logout(logoutCallback);
+    }
+
+    @Override
+    public void onAddButtonClicked() {
+        view.get().startAddPlaceActivity(currentUserId);
     }
 }

@@ -6,8 +6,12 @@ import org.firengine.mvp.view.BaseView;
 
 public interface AddPaymentActivityContract {
     interface Presenter extends BasePresenter {
-        void onAddButtonClicked(String studentId, String landlordId, String placeId, String paymentType, String paymentMethod, String paymentAmount);
+        void onActivityCreated(String userId, String placeId);
+        void onAddButtonClicked(String paymentAmount, String paymentMethod, String paymentDescription);
     }
 
-    interface View extends BaseView {}
+    interface View extends BaseView {
+        void updateTextViews(String placeName, String studentName, String landlordName);
+        void finishActivity();
+    }
 }

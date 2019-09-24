@@ -40,11 +40,13 @@ public class AddInfoActivityPresenter implements AddInfoActivityContract.Present
 
     @Override
     public void onAddInfoButtonClicked(String type, String firstName, String lastName) {
+        String displayName = firstName + " " + lastName;
         Map<String, Object> data = new HashMap<>();
         data.put("user_uid", userId);
         data.put("user_type", type);
         data.put("user_first_name", firstName);
         data.put("user_last_name", lastName);
+        data.put("user_display_name", displayName);
         database.create(data, createCallback);
     }
 

@@ -6,17 +6,16 @@ public class PlaceModel extends Model {
     public PlaceModel(){
         tableName = "Place";
         tableColumns = new String[] {
-
-                "b_name",
-                "b_address",
-                "b_Specialities",
-                "b_rules",
-                "b_roomTypes",
-                "b_map",
-                "b_roomPrice",
-                "b_roomAvail",
-                "b_photos",
-                "b_phoneNum"
+                "landlord_id",
+                "landlord_name",
+                "place_photo",
+                "place_name",
+                "place_price",
+                "place_available",
+                "place_address",
+                "place_phone",
+                "place_features",
+                "place_map"
         };
     }
 

@@ -10,8 +10,9 @@ public interface PaymentInfoActivityContract {
     }
 
     interface View extends BaseView{
-        void updateTextViews(Object student_id, Object landlord_id, Object place_id, Object payment_type, Object payment_method, Object payment_amount);
-        void startPaymentEditActivity(String id);
+        void updateTextViews(Object placeName, Object studentName, Object landlordName, Object paymentAmount, Object paymentMethod, Object paymentDescription);
+        void startEditPaymentActivity(String id);
+        void finishActivity();
     }
 
 }

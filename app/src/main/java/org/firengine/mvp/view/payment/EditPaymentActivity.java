@@ -3,6 +3,7 @@ package org.firengine.mvp.view.payment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -16,13 +17,12 @@ import org.firengine.mvp.presenter.payment.EditPaymentActivityPresenter;
 public class EditPaymentActivity extends AppCompatActivity implements EditPaymentActivityContract.View {
     private EditPaymentActivityContract.Presenter presenter;
 
-    private TextView studentId;
-    private TextView landlordId;
-    private TextView placeId;
-    private Spinner paymentType;
-    private TextView paymentMethod;
-    private TextView payemntAmount;
-
+    private TextView placeName;
+    private TextView studentName;
+    private TextView landlordName;
+    private EditText paymentAmount;
+    private Spinner paymentMethod;
+    private Spinner paymentDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,28 +31,27 @@ public class EditPaymentActivity extends AppCompatActivity implements EditPaymen
 
         presenter = new EditPaymentActivityPresenter(this, new Injector());
 
-        studentId = findViewById(R.id.a_s_id);
-        landlordId = findViewById(R.id.a_i_id);
-        placeId = findViewById(R.id.a_p_id);
-        paymentType = findViewById(R.id.payment_type);
-        paymentMethod = findViewById(R.id.method_payment);
-        payemntAmount = findViewById(R.id.amount_payment);
+        placeName = findViewById(R.id.place_name_payment_edit);
+        studentName = findViewById(R.id.student_name_payment_edit);
+        landlordName = findViewById(R.id.landlord_name_payment_edit);
+        paymentAmount = findViewById(R.id.payment_amount_edit);
+        paymentMethod = findViewById(R.id.payment_method_edit);
+        paymentDescription = findViewById(R.id.payment_description_edit);
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("payment_id");
 
         presenter.onActivityCreated(id);
-
     }
 
     @Override
-    public void updateEditTexts(Object student_id, Object landlord_id, Object place_id, Object payment_type, Object payment_method, Object payment_amount) {
-        studentId.setText(student_id.toString());
-        landlordId.setText(landlord_id.toString());
-        placeId.setText(place_id.toString());
-        findIndex(paymentType, payment_type);
-        paymentMethod.setText(payment_method.toString());
-        payemntAmount.setText(payment_amount.toString());
+    public void updateFormElements(Object placeName, Object studentName, Object landlordName, Object paymentAmount, Object paymentMethod, Object paymentDescription) {
+        this.placeName.setText(placeName.toString());
+        this.studentName.setText(studentName.toString());
+        this.landlordName.setText(landlordName.toString());
+        this.paymentAmount.setText(paymentAmount.toString());
+        findIndex(this.paymentMethod, paymentMethod);
+        findIndex(this.paymentDescription, paymentDescription);
     }
 
     @Override
@@ -60,14 +59,11 @@ public class EditPaymentActivity extends AppCompatActivity implements EditPaymen
         finish();
     }
 
-    public void onSave(View view) {
+    public void onConfirmEdit(View view) {
         presenter.onEditButtonClicked(
-                "student_id",
-                "landlord_id",
-                "place_id",
-                paymentType.getSelectedItem().toString(),
-                paymentMethod.getText().toString(),
-                payemntAmount.getText().toString()
+                paymentAmount.getText().toString(),
+                paymentMethod.getSelectedItem().toString(),
+                paymentDescription.getSelectedItem().toString()
         );
     }
 

@@ -15,12 +15,12 @@ import org.firengine.mvp.presenter.payment.PaymentInfoActivityPresenter;
 public class PaymentInfoActivity extends AppCompatActivity implements PaymentInfoActivityContract.View {
     private PaymentInfoActivityContract.Presenter presenter;
 
-    private TextView studentId;
-    private TextView landlordId;
-    private TextView placeId;
-    private TextView paymentType;
+    private TextView placeName;
+    private TextView studentName;
+    private TextView landlordName;
+    private TextView paymentAmount;
     private TextView paymentMethod;
-    private TextView payemntAmount;
+    private TextView paymentDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +29,12 @@ public class PaymentInfoActivity extends AppCompatActivity implements PaymentInf
 
         presenter = new PaymentInfoActivityPresenter(this, new Injector());
 
-        studentId = findViewById(R.id.student_name_payment_detail);
-        landlordId = findViewById(R.id.landlord_name_payment_detail);
-        placeId = findViewById(R.id.place_name_payment_detail);
-        paymentType = findViewById(R.id.type_payment_detail);
-        paymentMethod = findViewById(R.id.method_payment_detail);
-        payemntAmount = findViewById(R.id.amount_payment_detail);
+        placeName = findViewById(R.id.place_name_payment_info);
+        studentName = findViewById(R.id.student_name_payment_info);
+        landlordName = findViewById(R.id.landlord_name_payment_info);
+        paymentAmount = findViewById(R.id.payment_amount_info);
+        paymentMethod = findViewById(R.id.payment_method_info);
+        paymentDescription = findViewById(R.id.payment_description_info);
 
         Intent intent = getIntent();
         String id = intent.getStringExtra("payment_id");
@@ -43,20 +43,25 @@ public class PaymentInfoActivity extends AppCompatActivity implements PaymentInf
     }
 
     @Override
-    public void updateTextViews(Object student_id, Object landlord_id, Object place_id, Object payment_type, Object payment_method, Object payment_amount) {
-        studentId.setText(student_id.toString());
-        landlordId.setText(landlord_id.toString());
-        placeId.setText(place_id.toString());
-        paymentType.setText(payment_type.toString());
-        paymentMethod.setText(payment_method.toString());
-        payemntAmount.setText(payment_amount.toString());
+    public void updateTextViews(Object placeName, Object studentName, Object landlordName, Object paymentAmount, Object paymentMethod, Object paymentDescription) {
+        this.placeName.setText(placeName.toString());
+        this.studentName.setText(studentName.toString());
+        this.landlordName.setText(landlordName.toString());
+        this.paymentAmount.setText(paymentAmount.toString());
+        this.paymentMethod.setText(paymentMethod.toString());
+        this.paymentDescription.setText(paymentDescription.toString());
     }
 
     @Override
-    public void startPaymentEditActivity(String id) {
+    public void startEditPaymentActivity(String id) {
         Intent intent = new Intent(this, EditPaymentActivity.class);
         intent.putExtra("payment_id", id);
         startActivity(intent);
+    }
+
+    @Override
+    public void finishActivity() {
+        finish();
     }
 
     public void onEdit(View view) {

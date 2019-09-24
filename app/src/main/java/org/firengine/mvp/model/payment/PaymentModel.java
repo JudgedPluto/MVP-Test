@@ -6,12 +6,15 @@ public class PaymentModel extends Model {
     public PaymentModel() {
         tableName = "Payment";
         tableColumns = new String[] {
-                "student_id",
-                "landlord_id",
                 "place_id",
-                "payment_type",
+                "place_name",
+                "student_id",
+                "student_name",
+                "landlord_id",
+                "landlord_name",
+                "payment_amount",
                 "payment_method",
-                "payment_amount"
+                "payment_description"
         };
     }
 }

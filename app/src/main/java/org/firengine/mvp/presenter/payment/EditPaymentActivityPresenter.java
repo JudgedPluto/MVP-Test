@@ -13,28 +13,27 @@ import java.util.Map;
 public class EditPaymentActivityPresenter implements EditPaymentActivityContract.Presenter {
     private WeakReference<EditPaymentActivityContract.View> view;
 
-    private Database paymentDatabase;
-//    private Database userDatabase;
-//    private Database placeDatabase;
+    private Database database;
 
     private String paymentId;
 
     private Callback<Map<String, Object>> findCallback = new Callback<Map<String, Object>>() {
         @Override
         public void onSuccess(Map<String, Object> data) {
-            view.get().updateEditTexts(
-                    data.get("student_id"),
-                    data.get("landlord_id"),
-                    data.get("place_id"),
-                    data.get("payment_type"),
+            paymentId = data.get("id").toString();
+            view.get().updateFormElements(
+                    data.get("place_name"),
+                    data.get("student_name"),
+                    data.get("landlord_name"),
+                    data.get("payment_amount"),
                     data.get("payment_method"),
-                    data.get("payment_amount")
+                    data.get("payment_description")
             );
         }
 
         @Override
         public void onFailure() {
-
+            view.get().finishActivity();
         }
     };
 
@@ -50,31 +49,23 @@ public class EditPaymentActivityPresenter implements EditPaymentActivityContract
         }
     };
 
-
     public EditPaymentActivityPresenter(EditPaymentActivityContract.View view , Injector injector) {
-        this.view = new WeakReference<EditPaymentActivityContract.View>(view);
-        this.paymentDatabase = injector.getDatabaseInstance(new PaymentModel());
-//        this.userDatabase = injector.getDatabaseInstance(new UserModel());
-//        this.placeDatabase = injector.getDatabaseInstance(new PlaceModel());
+        this.view = new WeakReference<>(view);
+        this.database = injector.getDatabaseInstance(new PaymentModel());
     }
-
 
     @Override
     public void onActivityCreated(String id) {
-        paymentId = id;
-        paymentDatabase.find(id, findCallback);
+        database.find(id, findCallback);
     }
 
     @Override
-    public void onEditButtonClicked(String student_id, String landlord_id, String place_id, String toString, String toString1, String toString2) {
+    public void onEditButtonClicked(String paymentAmount, String paymentMethod, String paymentDescription) {
         Map<String, Object> payment = new HashMap<>();
-//        payment.put("student_id", student_id);
-//        payment.put("landlord_id", landlord_id);
-//        payment.put("place_id", place_id);
-        payment.put("payment_type", toString);
-        payment.put("payment_method", toString1);
-        payment.put("payment_amount", toString2);
-        paymentDatabase.update(paymentId, payment, updateCallback);
+        payment.put("payment_amount", paymentAmount);
+        payment.put("payment_method", paymentMethod);
+        payment.put("payment_description", paymentDescription);
+        database.update(paymentId, payment, updateCallback);
 
     }
 }

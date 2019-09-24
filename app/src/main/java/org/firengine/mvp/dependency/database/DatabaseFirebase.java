@@ -1,7 +1,5 @@
 package org.firengine.mvp.dependency.database;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,16 +21,16 @@ import java.util.Map;
 public class DatabaseFirebase implements Database {
     private Model model;
 
-    private DatabaseReference database;
+    private FirebaseDatabase database;
 
     public DatabaseFirebase(FirebaseDatabase database, Model model) {
-        this.database = database.getReference();
+        this.database = database;
         this.model = model;
     }
 
     @Override
     public void all(@NonNull final Callback<List<Map<String, Object>>> callback) {
-        database.child(model.getTableName())
+        database.getReference().child(model.getTableName())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -57,7 +55,7 @@ public class DatabaseFirebase implements Database {
 
     @Override
     public void find(String id, @NonNull final Callback<Map<String, Object>> callback) {
-        database.child(model.getTableName())
+        database.getReference().child(model.getTableName())
                 .child(id).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -78,7 +76,7 @@ public class DatabaseFirebase implements Database {
 
     @Override
     public void where(String column, String value, @NonNull final Callback<List<Map<String, Object>>> callback) {
-        database.child(model.getTableName())
+        database.getReference().child(model.getTableName())
                 .orderByChild(column).equalTo(value).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -103,7 +101,7 @@ public class DatabaseFirebase implements Database {
 
     @Override
     public void create(Map<String, Object> data, @NonNull final Callback<Void> callback) {
-        database.child(model.getTableName())
+        database.getReference().child(model.getTableName())
                 .push().setValue(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -119,7 +117,7 @@ public class DatabaseFirebase implements Database {
 
     @Override
     public void update(String id, Map<String, Object> data, @NonNull final Callback<Void> callback) {
-        database.child(model.getTableName())
+        database.getReference().child(model.getTableName())
                 .child(id).updateChildren(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -135,7 +133,7 @@ public class DatabaseFirebase implements Database {
 
     @Override
     public void delete(String id, @NonNull final Callback<Void> callback) {
-        database.child(model.getTableName())
+        database.getReference().child(model.getTableName())
                 .child(id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

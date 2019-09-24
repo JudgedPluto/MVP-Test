@@ -1,9 +1,11 @@
 package org.firengine.mvp.view.payment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,9 +17,12 @@ import org.firengine.mvp.presenter.payment.AddPaymentActivityPresenter;
 public class AddPaymentActivity extends AppCompatActivity implements AddPaymentActivityContract.View {
     private AddPaymentActivityContract.Presenter presenter;
 
-    private Spinner inputType;
-    private EditText inputMethod;
-    private EditText inputAmount;
+    private TextView placeName;
+    private TextView studentName;
+    private TextView landlordName;
+    private EditText paymentAmount;
+    private Spinner paymentMethod;
+    private Spinner paymentDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +31,35 @@ public class AddPaymentActivity extends AppCompatActivity implements AddPaymentA
 
         presenter = new AddPaymentActivityPresenter(this, new Injector());
 
-        inputType = findViewById(R.id.payment_type);
-        inputMethod = findViewById(R.id.method_payment);
-        inputAmount = findViewById(R.id.amount_payment);
+        placeName = findViewById(R.id.place_name_payment_add);
+        studentName = findViewById(R.id.student_name_payment_add);
+        landlordName = findViewById(R.id.landlord_name_payment_add);
+        paymentAmount = findViewById(R.id.payment_amount_add);
+        paymentMethod = findViewById(R.id.payment_method_add);
+        paymentDescription = findViewById(R.id.payment_description_add);
+
+        Intent intent = getIntent();
+        String userId = intent.getStringExtra("user_id");
+        String placeId = intent.getStringExtra("place_id");
+
+        presenter.onActivityCreated(userId, placeId);
     }
 
-    public void onAdd(View view) {
+    @Override
+    public void updateTextViews(String placeName, String studentName, String landlordName) {
+        this.placeName.setText(placeName);
+        this.studentName.setText(studentName);
+        this.landlordName.setText(landlordName);
+    }
+
+    @Override
+    public void finishActivity() {
+        finish();
+    }
+
+    public void onConfirmAdd(View view) {
         presenter.onAddButtonClicked(
-            "student_id",
-            "landlord_id",
-            "place_id",
-                inputType.getSelectedItem().toString(),
-                inputMethod.getText().toString(),
-                inputAmount.getText().toString()
+                paymentAmount.getText().toString(), paymentMethod.getSelectedItem().toString(), paymentDescription.getSelectedItem().toString()
         );
     }
 }
