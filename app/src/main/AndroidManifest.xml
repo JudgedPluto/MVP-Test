@@ -35,6 +35,10 @@
         <activity android:name=".view.payment.EditPaymentActivity" />
         <activity android:name=".view.payment.AddPaymentActivity" />
         <activity android:name=".view.payment.PaymentInfoActivity" />
-    </application>
 
+        <activity android:name=".view.review.ReviewEditActivity" />
+        <activity android:name=".view.review.ReviewDeleteActivity" />
+        <activity android:name=".view.review.ReviewListActivity" />
+        <activity android:name=".view.review.ReviewAddActivity" />
+    </application>
 </manifest>

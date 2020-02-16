@@ -17,6 +17,4 @@ public class Injector {
     public Authenticator getAuthenticationInstance() {
         return new AuthenticatorFirebase(FirebaseAuth.getInstance());
     }
-
-    
 }
